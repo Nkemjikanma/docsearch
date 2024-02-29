@@ -1,4 +1,4 @@
-import type { Handler, HandlerResponse } from "@netlify/functions";
+import type { Handler } from "@netlify/functions";
 import { block, slackApi, validateRequest } from "./utils/slack";
 import { parse } from "querystring";
 import { repoContent } from "./utils/github";
@@ -12,10 +12,15 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
 
         case "/docsearch":
             const results = await repoContent(payload.text);
-            console.log(results);
+
+            console.log("results", results);
+
+            // prepare the block with an array of results
+
+            // The results are in for <@${payload.user_id}>'s search
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
-                text: `The results are in for <@${payload.user_id}>'s search`,
+                text: `The results are `,
             });
 
             if (!response.ok) {
