@@ -34,7 +34,7 @@ export function validateRequest(request: HandlerEvent) {
         return false;
     }
 
-    // create hash like
+    // create hash like slack
     const hmac = createHmac("sha256", secret)
         .update(`v0:${timestamp}:${request.body}`)
         .digest("hex");

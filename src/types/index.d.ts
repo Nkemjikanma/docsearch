@@ -1,3 +1,5 @@
+const octokit = new Octokit();
+
 type SlackApiEndpoint = "chat.postMessage";
 type SlackApiRequestBody = {};
 type SlackSlashCommandPayload = {
