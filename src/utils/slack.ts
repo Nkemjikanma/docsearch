@@ -83,14 +83,14 @@ export const block = (
             },
         },
         {
+            type: "divider",
+        },
+        {
             type: "section",
             text: {
                 type: "mrkdwn",
                 text: `Hey @${userId}, the results of your search are ready! Follow any of the links provided for more details! :party_blob:`,
             },
-        },
-        {
-            type: "divider",
         },
         ...resultSection, // this is the array of search results
         {
