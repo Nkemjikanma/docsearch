@@ -74,12 +74,14 @@ export const block = (
         },
     }));
 
+    const date = Date.now();
+
     return [
         {
             type: "header",
             text: {
                 type: "plain_text",
-                text: "New Search Results",
+                text: ":mag: New Search Results",
             },
         },
         {
@@ -95,6 +97,20 @@ export const block = (
         ...resultSection, // this is the array of search results
         {
             type: "divider",
+        },
+        {
+            type: "context",
+            elements: [
+                {
+                    type: "plain_text",
+                    text: `${new Date(date).toLocaleTimeString()}`,
+                },
+                {
+                    type: "plain_text",
+                    text: `${new Date(date).toLocaleDateString()}`,
+                },
+                { type: "plain_text", text: ":navro2:" },
+            ],
         },
     ];
 };
