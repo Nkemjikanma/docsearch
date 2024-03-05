@@ -46,6 +46,7 @@ export function validateRequest(request: HandlerEvent) {
 export const block = (
     searchResults: SectionBlockKitArgs[] | undefined,
     userId: string,
+    searchText: string,
 ) => {
     if (!searchResults || searchResults.length === 0) {
         return [
@@ -60,7 +61,7 @@ export const block = (
                 type: "section",
                 text: {
                     type: "mrkdwn",
-                    text: "No record of search found. Please try again with a different search query. :sweat_smile:",
+                    text: `No record of *${searchText}* was found. Please try again with a different search query. :sweat_smile:`,
                 },
             },
         ];
@@ -91,7 +92,7 @@ export const block = (
             type: "section",
             text: {
                 type: "mrkdwn",
-                text: `Hey @${userId}, the results of your search are ready! Follow any of the links provided for more details! :party_blob:`,
+                text: `Hey @${userId}, your result(s) are ready! Search query \`${searchText}\` - Follow any of the links provided for more details! :party_blob:`,
             },
         },
         ...resultSection, // this is the array of search results

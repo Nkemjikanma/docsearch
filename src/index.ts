@@ -14,7 +14,7 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
             const results = await repoContent(payload.text);
 
             const displayResult = JSON.stringify(
-                block(results, payload.user_name),
+                block(results, payload.user_name, payload.text),
             );
 
             const response = await slackApi("chat.postMessage", {
