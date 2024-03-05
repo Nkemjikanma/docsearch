@@ -13,14 +13,13 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
         case "/docsearch":
             const results = await repoContent(payload.text);
 
-            console.log("results", results);
+            const displayResult = JSON.stringify(
+                block(results, payload.user_name),
+            );
 
-            // prepare the block with an array of results
-
-            // The results are in for <@${payload.user_id}>'s search
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
-                text: `The results are `,
+                blocks: displayResult,
             });
 
             if (!response.ok) {

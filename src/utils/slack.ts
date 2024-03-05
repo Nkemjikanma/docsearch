@@ -43,20 +43,58 @@ export function validateRequest(request: HandlerEvent) {
     return `v0=${hmac}` === signatrue;
 }
 
-export const block = {
-    section: ({ text, url }: SectionBlockKitArgs): SlackBlockKitSection => {
-        // how do we handle multiple results? and display all of them in one section?
-        // text.map((t) => {}) ?
-        return {
-            blocks: [
-                {
-                    type: "section",
-                    text: {
-                        type: "mrkdwn",
-                        text,
-                    },
+export const block = (
+    searchResults: SectionBlockKitArgs[] | undefined,
+    userId: string,
+) => {
+    if (!searchResults || searchResults.length === 0) {
+        return [
+            {
+                type: "header",
+                text: {
+                    type: "plain_text",
+                    text: "No record of search found :no_entry:",
                 },
-            ],
-        };
-    },
+            },
+            {
+                type: "section",
+                text: {
+                    type: "mrkdwn",
+                    text: "No record of search found. Please try again with a different search query. :sweat_smile:",
+                },
+            },
+        ];
+    }
+
+    const resultSection = searchResults.map((result) => ({
+        type: "section",
+        text: {
+            type: "mrkdwn",
+            text: `*file:* ${result.text} \n *path:* ${result.path} \n *text matches:* \`\`\`${result.text_matches}\`\`\``,
+        },
+    }));
+
+    return [
+        {
+            type: "header",
+            text: {
+                type: "plain_text",
+                text: "New Search Results",
+            },
+        },
+        {
+            type: "section",
+            text: {
+                type: "mrkdwn",
+                text: `Hey @${userId}, the results of your search are ready! Follow any of the links provided for more details! :party_blob:`,
+            },
+        },
+        {
+            type: "divider",
+        },
+        ...resultSection, // this is the array of search results
+        {
+            type: "divider",
+        },
+    ];
 };

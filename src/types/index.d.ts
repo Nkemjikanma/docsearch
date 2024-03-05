@@ -28,19 +28,27 @@ type SlackPayload = SlackSlashCommandPayload | SlackInteractivityPayload;
 
 type SectionBlockKitArgs = {
     text: string;
-    url?: string;
+    path: string;
+    text_matches: (string | undefined)[] | undefined;
 };
 
 type SlackBlockKitSection = {
     blocks: [
         {
-            type: "section";
+            type: "header";
             text: {
-                type: "plain_text" | "mrkdwn";
+                type: "mrkdwn";
                 text: string;
                 verbatim?: boolean;
             };
         },
+        {
+            type: "section";
+            text: {
+                type: "mrkdwn";
+                text: string;
+            };
+        }[]?,
     ];
 };
 

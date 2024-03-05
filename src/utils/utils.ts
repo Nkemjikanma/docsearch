@@ -11,18 +11,22 @@ export const cleanUpSearchResponse = (searchResult: SearchResultType) => {
     if (searchResult.total_count === 0) {
         return;
     }
+    const { items } = searchResult;
 
-    return searchResult.items.map(({ name, path, url, text_matches }) => {
-        return {
-            name,
-            path,
-            url,
-            text_matches: text_matches?.map(({ fragment, matches }) => {
-                return {
-                    fragment,
-                    matches: matches?.map(({ text }) => text),
-                };
-            }),
-        };
+    // remove duplicate filenames - so we can have a unique list of files
+    const filterSearchResponse = items.filter((value, index, self) => {
+        return index === self.findIndex((t) => t.path === value.path);
     });
+
+    const cleanedUpResults = filterSearchResponse.map(
+        ({ name, path, text_matches }) => {
+            return {
+                text: name,
+                path,
+                text_matches: text_matches?.map(({ fragment }) => fragment),
+            };
+        },
+    );
+
+    return cleanedUpResults;
 };

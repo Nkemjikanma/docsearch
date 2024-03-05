@@ -18,6 +18,7 @@ export const repoContent = async (searchText: string) => {
 
         // TODO: set the correct query string for the search
         // TODO: Investigate making it more dynamic
+
         const queryString = `${searchText} language:ts repo:nkemjikanma/docsearch`;
 
         const searchCode = async () => {
@@ -32,6 +33,7 @@ export const repoContent = async (searchText: string) => {
         };
 
         const cleanedUpResults = cleanUpSearchResponse(await searchCode());
+
         return cleanedUpResults;
     }
 };
