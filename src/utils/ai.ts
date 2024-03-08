@@ -25,15 +25,15 @@ const loadDocumentation = async () => {
             branch: "feat/add-ai-functionality",
             accessToken: process.env.GITHUB_ACCESS_TOKEN, // get github access token
             ignorePaths: [
-                "./data/*",
-                "./public/*",
-                "./specs/*",
-                "./src/*",
-                "./README.md",
-                "./node_modules",
-                "./.netlify",
+                "data/*",
+                "public/*",
+                "specs/*",
+                "src/*",
+                "README.md",
+                "node_modules",
+                ".netlify",
             ],
-            ignoreFiles: ["*.sh", "*.json", "*.toml", "README.md"],
+            ignoreFiles: ["/*.sh", "/*.json", "/*.toml", "README.md"],
             recursive: true,
             unknown: "warn",
         },
@@ -54,7 +54,7 @@ const loadDocumentation = async () => {
 const loadStore = async (): Promise<MemoryVectorStore> => {
     const docs = await loadDocumentation();
 
-    const vectorStore = await createVectoreStore(docs);
+    const vectorStore = await createVectoreStore([...docs]);
 
     console.log(vectorStore);
 
