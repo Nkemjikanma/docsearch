@@ -1,9 +1,9 @@
 // https://js.langchain.com/docs/integrations/document_loaders/web_loaders/github
 import OpenAI from "openai";
 import { Document } from "langchain/document";
+import { UnstructuredLoader } from "langchain/document_loaders/fs/unstructured";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings } from "@langchain/openai"; // used to get the embeddings of the text
-import { CharacterTextSplitter } from "langchain/text_splitter";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { GithubRepoLoader } from "langchain/document_loaders/web/github";
 import { ChatCompletion } from "openai/resources";
@@ -22,41 +22,42 @@ const loadDocumentation = async () => {
     const loader = new GithubRepoLoader(
         "https://github.com/nkemjikanma/docsearch",
         {
-            branch: "feat/add-ai-functionality",
+            branch: "main",
             accessToken: process.env.GITHUB_ACCESS_TOKEN, // get github access token
             ignorePaths: [
                 "data/*",
                 "public/*",
                 "specs/*",
-                "src/*",
                 "README.md",
                 "node_modules",
                 ".netlify",
             ],
-            ignoreFiles: ["/*.sh", "/*.json", "/*.toml", "README.md"],
-            recursive: true,
+            ignoreFiles: ["*.sh", "*.json", "*.toml", "README.md"],
             unknown: "warn",
         },
     );
-
     // load and split the documents
 
     return loader.loadAndSplit(
         //TODO: keep testing to find the best separator and chunk size/overlap
         RecursiveCharacterTextSplitter.fromLanguage("markdown", {
             chunkSize: 5000, // how many tokens per chunk?
-            chunkOverlap: 200, // some overlap between chunks
+            chunkOverlap: 0, // some overlap between chunks
         }),
     );
 };
 
 // load the vector store
 const loadStore = async (): Promise<MemoryVectorStore> => {
-    const docs = await loadDocumentation();
+    const docs = await loadDocumentation().then((docs) => {
+        return docs.filter((doc) => doc.metadata.source.startsWith("docs/"));
+    });
+
+    console.log(docs);
 
     const vectorStore = await createVectoreStore([...docs]);
 
-    console.log(vectorStore);
+    // console.log(vectorStore);
 
     return vectorStore;
 };

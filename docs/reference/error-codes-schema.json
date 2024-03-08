@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error Catalogue Schema",
+  "definitions": {
+    "Exception": {
+      "type": "object",
+      "required": [
+        "code",
+        "description",
+        "error",
+        "httpStatus",
+        "internalComments",
+        "isPublic",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "error": {
+          "type": "string"
+        },
+        "httpStatus": {
+          "type": "integer"
+        },
+        "internalComments": {
+          "type": ["string", "null"]
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "businessExceptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Exception"
+      }
+    },
+    "technicalExceptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Exception"
+      }
+    }
+  },
+  "required": ["businessExceptions", "technicalExceptions"]
+}

@@ -1,0 +1,832 @@
+{
+  "$schema": "./error-codes-schema.json",
+  "technicalExceptions": [
+    {
+      "error": "MethodArgumentTypeMismatchException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40000",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "HttpMessageConversionException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "ContentProcessingException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UnrecognizedPropertyException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "Validation",
+      "message": "Data Validation failed for fields",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "ServerWebInputException",
+      "message": "Data Validation failed for fields",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "WebExchangeBindException",
+      "message": "Data Validation failed for fields",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "ConstraintViolationException",
+      "message": "Data Validation failed for fields",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40001",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "MissingRequestHeaderException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40002",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "RequestRejectedException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40005",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "3rd party provider call failed",
+      "message": "A third-party downstream provider returned an error to the Navro service",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40006",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "Forbidden",
+      "message": "Forbidden access",
+      "isPublic": true,
+      "httpStatus": 403,
+      "code": "PTRX-40300",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "ResourceNotFound",
+      "message": "Requested resource was not found",
+      "isPublic": true,
+      "httpStatus": 404,
+      "code": "PTRX-40400",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "HttpRequestMethodNotSupportedException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 405,
+      "code": "PTRX-40500",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "HttpMediaTypeNotAcceptableException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 406,
+      "code": "PTRX-40600",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "MethodArgumentNotValidException",
+      "message": null,
+      "isPublic": true,
+      "httpStatus": 422,
+      "code": "PTRX-42201",
+      "description": "Occurs because the `X-API-Version` header is missing. To resolve, add this HTTP header (only supported value: `1`) for every REST API call made to the backend.",
+      "internalComments": null
+    },
+    {
+      "error": "HttpMediaTypeNotSupportedException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 415,
+      "code": "PTRX-41500",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "MultipartException",
+      "message": null,
+      "isPublic": false,
+      "httpStatus": 415,
+      "code": "PTRX-41500",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "Exception - as fallback",
+      "message": "Internal server error",
+      "isPublic": true,
+      "httpStatus": 500,
+      "code": "PTRX-50000",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "Bad Gateway - unparseable response (unknown response from provider or missing field in provider response)",
+      "message": "The server was acting as a gateway or proxy and received an invalid response from the upstream server",
+      "isPublic": false,
+      "httpStatus": 502,
+      "code": "PTRX-50200",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "3rd party service unavailable",
+      "message": "A third-party downstream provider is temporarily unable to handle the request.",
+      "isPublic": true,
+      "httpStatus": 503,
+      "code": "PTRX-50300",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "Service unavailable",
+      "message": "Payout cannot be processed at this time due to operational hours. Please retry later.",
+      "isPublic": true,
+      "httpStatus": 503,
+      "code": "PTRX-50301",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "ExternalDependencyError",
+      "message": "Unable to complete the operation due to a failure in a dependent action from another service.",
+      "isPublic": false,
+      "httpStatus": 424,
+      "code": "PTRX-42400",
+      "description": "Occurs following an error in calling the gRPC endpoint from another microservice.",
+      "internalComments": null
+    },
+    {
+      "error": "ReactiveLockException",
+      "message": "`LOCK_MAJORITY_NOT_ACQUIRED` - A majority of locks were not acquired for this operation `LOCK_TIME_LAPSED` - The time frame within which to execute operation has lapsed",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": null,
+      "description": "Occurs when an operation fails to execute due to the ReactiveLock solution. These exceptions are only visible through internal logging.",
+      "internalComments": null
+    }
+  ],
+  "businessExceptions": [
+    {
+      "error": "USER_IS_SUSPENDED",
+      "message": "The user is suspended and it's data can't be updated. Please activate it first.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40002",
+      "component": "USERS_SERVICE",
+      "description": "Occurs when you attempt to update a suspended user by ID.",
+      "internalComments": null
+    },
+    {
+      "error": "ROUTING_NOT_IDENTIFIED",
+      "message": "Corridors not supported.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40003",
+      "component": "PAYMENT_ROUTES",
+      "description": "Occurs because no third-party provider is associated with this payment routing.",
+      "internalComments": null
+    },
+    {
+      "error": "ROUTING_CONFIG_MISSING",
+      "message": "Client is missing the required Provider configuration.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40004",
+      "component": "PAYMENT_ROUTES",
+      "description": null,
+      "internalComments": "A provider could be identified for the given combination of source currency + destination  currency + country supported by provider. However, it is not enabled in the party  configuration."
+    },
+    {
+      "error": "MAPPED_EMQ_PURPOSE_OF_REMITTANCE_NOT_FOUND",
+      "message": "Paytrix purpose of remittance mapping to EMQ purpose of remittance can't be found",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40006",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "MAPPED_EMQ_SOURCE_OF_FUNDS_NOT_FOUND",
+      "message": "Paytrix source of funds mapping to EMQ source of funds can't be found",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40008",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_MODULR_NOTIFICATION_PAYLOAD",
+      "message": "MODURL notification has an invalid payload.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40009",
+      "component": "MODULR_ADAPTER",
+      "description": null,
+      "internalComments": "If an invalid Payout status happens."
+    },
+    {
+      "error": "INVALID_TRANSFERMATE_NOTIFICATION_PAYLOAD",
+      "message": "TransferMate notification has an invalid payload.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40009",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": "Occurs when there's an error with the payment notification.",
+      "internalComments": null
+    },
+    {
+      "error": "PAYOUT_EXPIRED",
+      "message": "Payout expired",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40010",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_GRPC_PAYLOAD",
+      "message": "Invalid gRPC payload received.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40010",
+      "component": "EMQ_ADAPTER, MODULR_ADAPTER, TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": "Specific gRPC mapping exceptions, currently hidden behind payouts."
+    },
+    {
+      "error": "INVALID_UPDATE_PAYOUT_RESPONSE",
+      "message": "Invalid update payout response.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40011",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "SAME_PAYOUT_STATUS_FOR_UPDATE",
+      "message": "The status of the payout you want to update is already in the requested state",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40011",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNSUPPORTED_DESTINATION_EXCEPTION",
+      "message": "The destination of the message is not supported yet.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40015",
+      "component": "NOTIFICATIONS",
+      "description": "Occurs when there is a direction mismatch on outgoing notifications, or a wrong routing key on internal payout notifications.",
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_NOTIFICATION_PAYLOAD",
+      "message": "This notification has an invalid payload.",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40016",
+      "component": "NOTIFICATIONS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INSUFFICIENT_FUNDS",
+      "message": "Source does not have enough balance",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40017",
+      "component": "TRANSFERMATE_ADAPTER, MODULR_ADAPTER",
+      "description": "Occurs because the source bank account opened on the provider's side does not have enough balance to proceed with the requested payment.",
+      "internalComments": null
+    },
+    {
+      "error": "FUNDING_ACCOUNT_MISMATCH",
+      "message": "The selected funding account cannot be used for processing this payout instruction.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40018",
+      "component": "PAYMENT_ROUTE, PAYOUTS",
+      "description": "Occurs because the selected funding account does not support handling the instruction of source currency, destination country and currency.",
+      "internalComments": null
+    },
+    {
+      "error": "MISSING_IBAN",
+      "message": "Partner indicates request missing IBAN",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40019",
+      "component": "TRANSFERMATE_ADAPTER, PAYOUTS",
+      "description": null,
+      "internalComments": "If missing Iban on TM, it propagates to payout on book and confirm payout"
+    },
+    {
+      "error": "INVALID_STATUS_TRANSITION_FOR_PAYOUT_STATUS_UPDATE",
+      "message": "The provided transition status update is not allowed",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40020",
+      "component": "PAYOUTS",
+      "description": "Occurs because a payout update from the provider ID attempted a status transition that is not allowed.",
+      "internalComments": null
+    },
+    {
+      "error": "BANK_ACCOUNT_NOT_FOUND",
+      "message": "Bank account not found for the party",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40021",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": "When specific source asset_code is used, we should make sure that party in our system has  source bank account with that currency if not, then “Bank account not found for party” will  be thrown."
+    },
+    {
+      "error": "INCOMPLETE_SUBMISSION_FORM",
+      "message": "Application form is not completed. Client Details/Individuals information is missing",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40022",
+      "component": "PARTIES",
+      "description": "Occurs when a prospect tries to submit data for a compliancy check, but the client details and individual do not exist in the database record.",
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PARTY_STATUS",
+      "message": "The party status update is not allowed",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40023",
+      "component": "PARTIES",
+      "description": null,
+      "internalComments": "A party update by the party ID attempted a status transition that is not allowed. The update party status feature should be called by Compliance team only."
+    },
+    {
+      "error": "FX_UNAVAILABLE",
+      "message": "You cannot book FX payouts outside of trading hours. Please try again later.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40024",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "CURRENCY_NOT_SUPPORTED",
+      "message": "This currency is currently not supported.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40025",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": "Occurs with the following currencies: Afghan Afghani (`AFN`), Djiboutian Franc (`DJF`), Iraqi Dinar (`IQD`), Moldovan Leu (`MDL`), Somali Shilling (`SOS`), Turkmenistani Manat (`TMT`), Ukrainian hryvnia (`UAH`), Yemeni Rial (` YER`), Zimbabwean dollar ('ZWL').",
+      "internalComments": null
+    },
+    {
+      "error": "SANCTIONED_COUNTRY",
+      "message": "Unable to send to sanctioned country.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40026",
+      "component": "PAYOUTS",
+      "description": "Occurs, for example, with the Russian Ruble (`RUB`).",
+      "internalComments": null
+    },
+    {
+      "error": "OPERATION_NOT_SUPPORTED",
+      "message": "Refresh rate operation is not supported for this payout",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40027",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": "Refresh rate endpoint"
+    },
+    {
+      "error": "SINGLE_AMOUNT_VALUE_NOT_DEFINED",
+      "message": "Both source.amount.value and destination.amount.value are defined or empty, define only one.",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40029",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": "PLAT-4561: [BE] Create drafts accept payload without any amount - source or destination"
+    },
+    {
+      "error": "INVALID_REQUEST_APPROVAL",
+      "message": "Request Approval Invalid",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40031",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_APPROVAL",
+      "message": "Approval Invalid",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40032",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_DENY",
+      "message": "Deny Invalid",
+      "isPublic": true,
+      "httpStatus": 400,
+      "code": "PTRX-40032",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": "This will be for the new restart endpoint"
+    },
+    {
+      "error": "INVALID_RESTART",
+      "message": "Restart Invalid",
+      "isPublic": false,
+      "httpStatus": 400,
+      "code": "PTRX-40035",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "FORBIDDEN_NO_ACCESS_TO_TENANT",
+      "message": "You do not have access to this tenant.",
+      "isPublic": true,
+      "httpStatus": 403,
+      "code": "PTRX-40305",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": "Checks if the `payout.sourcePartyId` matches the allowedTenants on the user auth info."
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_UPDATE",
+      "message": "The status of the payout you want to update is not DRAFT",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40900",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_CONFIRM",
+      "message": "The status of the payout you want to confirm is not REQUESTED",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40901",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_CANCEL",
+      "message": "The status of the payout you want to cancel is neither DRAFT nor REQUESTED",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40902",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_BOOK",
+      "message": "The status of the payout you want to book is not DRAFT",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40903",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_REQUEST_APPROVAL",
+      "message": "The status of the payout you want to request approval is not DRAF",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40904",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_APPROVAL",
+      "message": "The status of the payout you want to approve is not PENDING_BOOKING",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40905",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_DENY",
+      "message": "The status of the payout you want to deny is not PENDING_BOOKING",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40906",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_RESTART",
+      "message": "The status of the payout you want to restart is not PENDING_BOOKING",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40910",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_STATUS_FOR_REFRESH_RATE",
+      "message": "The status of the payout you want to refresh rate is not REQUESTED",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40915",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PARTY_STATUS",
+      "message": "The party is not on the required status for an specific operation",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40922",
+      "component": "PARTIES",
+      "description": null,
+      "internalComments": "Code might change to PTRX-40907 to follow the sequence, but for now updating with what is in  the code-base."
+    },
+    {
+      "error": "PROVIDER_ENABLED",
+      "message": "Provider is already enabled for a certain party, and it not possible to enable it again.",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40923",
+      "component": "PARTIES",
+      "description": null,
+      "internalComments": "Code might change to PTRX-40908 to follow the sequence, but for now updating with what is in  the code-base."
+    },
+    {
+      "error": "INVALID_OPERATION_FOR_ASSIGNED_ENTITY_TYPE",
+      "message": "The operation you want to invoke is forbidden for NON-regulated entities",
+      "isPublic": true,
+      "httpStatus": 409,
+      "code": "PTRX-40924",
+      "component": "PARTIES",
+      "description": null,
+      "internalComments": "Code might change to PTRX-40909 to follow the sequence, but for now updating with what is  in the code-base."
+    },
+    {
+      "error": "INVALID_PARENT_ID",
+      "message": "Provided Parent Id is Invalid",
+      "isPublic": false,
+      "httpStatus": 409,
+      "code": "PTRX-40926",
+      "component": "PARTIES",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "CSV_FILE_LOAD_ERROR",
+      "message": "Csv file load error",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50002",
+      "component": "EMQ_ADAPTER, TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "INVALID_PAYOUT_REASON_FOR_CANCEL",
+      "message": "This payout was already sent for cancellation.",
+      "isPublic": true,
+      "httpStatus": 500,
+      "code": "PTRX-50003",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "MODULR_CALL_FAILED",
+      "message": "Modulr call failed.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50006",
+      "component": "MODULR_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNKNOWN_MODULR_STATUS",
+      "message": "MODURL has an invalid payload status.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50007",
+      "component": "MODULR_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "NO_PAYOUT_FOUND_FOR_NOTIFICATION",
+      "message": "Payout was not found in the database for notification.",
+      "isPublic": true,
+      "httpStatus": 500,
+      "code": "PTRX-50008",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "REQUEST_ID_EMPTY",
+      "message": "Request Id is Empty.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50012",
+      "component": "LOGGER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNEXPECTED_EXCEPTION",
+      "message": "Unexpected exception occurred.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50013",
+      "component": "EMQ_ADAPTER, TRANSFERMATE_ADAPTER, MODULR_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "NO_PAYMENT_DETAILS_FOUND_FOR_PAYOUT",
+      "message": "No payment details found for payout",
+      "isPublic": true,
+      "httpStatus": 500,
+      "code": "PTRX-50016",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": "If payment details object returns from TM not present, then we should throw this error"
+    },
+    {
+      "error": "UNKNOWN_PAYMENT_PROVIDER",
+      "message": "The provided payment provider is not supported.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50017",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNHANDLED_EXCEPTION",
+      "message": "Unhandled exception occurred.",
+      "isPublic": true,
+      "httpStatus": 500,
+      "code": "PTRX-50020",
+      "component": "TRANSFERMATE_ADAPTER, MODULR_ADAPTER",
+      "description": null,
+      "internalComments": "No specific error defined, it's a catch-all error if it isn't handled"
+    },
+    {
+      "error": "INVALID_EMQ_PARTY_TYPE",
+      "message": "Invalid EMQ Party Type.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50021",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNSUPPORTED_PAYOUT_CHANNEL",
+      "message": "Payout channel is not supported.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50022",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "UNSUPPORTED_PAYOUT_STATUS",
+      "message": "The provided payout status is not supported.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50024",
+      "component": "PAYOUTS",
+      "description": null,
+      "internalComments": null
+    },
+    {
+      "error": "PAYOUT_BOOK_EXCEPTION",
+      "message": "Payout book failed.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50025",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": "No specific error defined, it's a catch-all error if it isn't handled"
+    },
+    {
+      "error": "TRANSFERMATE_NOTIFICATION_EXCEPTION",
+      "message": "Transfermate notification exception.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50026",
+      "component": "TRANSFERMATE_ADAPTER",
+      "description": null,
+      "internalComments": "Please raise if no user is available. Catch-all"
+    },
+    {
+      "error": "MODULR_NOTIFICATION_EXCEPTION",
+      "message": "Modulr notification exception.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50027",
+      "component": "MODULR_ADAPTER",
+      "description": null,
+      "internalComments": "Please raise if no user is available. Catch-all"
+    },
+    {
+      "error": "EMQ_NOTIFICATION_EXCEPTION",
+      "message": "EMQ notification exception.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50028",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": "Please raise if no user is available. Catch-all"
+    },
+    {
+      "error": "EMQ_API_EXCEPTION",
+      "message": "EMQ API exception.",
+      "isPublic": false,
+      "httpStatus": 500,
+      "code": "PTRX-50029",
+      "component": "EMQ_ADAPTER",
+      "description": null,
+      "internalComments": "Catch-all exception, no specific details on what caused it."
+    }
+  ]
+}
