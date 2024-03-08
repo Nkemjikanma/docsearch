@@ -7,6 +7,7 @@ const envSchema = z.object({
     GITHUB_PRIVATE_KEY: z.string(),
     GITHUB_CLIENT_ID: z.string(),
     GITHUB_CLIENT_SECRET: z.string(),
+    GITHUB_ACCESS_TOKEN: z.string(),
 });
 
 envSchema.parse(process.env);

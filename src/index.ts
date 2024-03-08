@@ -2,6 +2,7 @@ import type { Handler } from "@netlify/functions";
 import { block, slackApi, validateRequest } from "./utils/slack";
 import { parse } from "querystring";
 import { repoContent } from "./utils/github";
+import { query } from "./utils/ai";
 
 /*
  *
@@ -12,9 +13,10 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
 
         case "/docsearch":
             const results = await repoContent(payload.text);
+            const aiResults = await query(payload.text);
 
             const displayResult = JSON.stringify(
-                block(results, payload.user_name, payload.text),
+                block(aiResults as any, payload.user_name, payload.text),
             );
 
             const response = await slackApi("chat.postMessage", {
