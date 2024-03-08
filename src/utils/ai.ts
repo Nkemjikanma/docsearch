@@ -30,7 +30,7 @@ const loadDocumentation = async () => {
                 "specs/*",
                 "src/*",
                 "*.sh",
-                "*/.json",
+                "*/*.json",
                 ".toml",
                 "./README.md",
             ],
@@ -54,6 +54,8 @@ const loadStore = async (): Promise<MemoryVectorStore> => {
     const docs = await loadDocumentation();
 
     const vectorStore = await createVectoreStore(docs);
+
+    console.log(vectorStore);
 
     return vectorStore;
 };
