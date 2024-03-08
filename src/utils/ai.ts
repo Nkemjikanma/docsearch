@@ -33,8 +33,10 @@ const loadDocumentation = async () => {
                 "*.json",
                 "*.toml",
                 "./README.md",
+                "node_modules/*",
+                ".netlify",
             ],
-            recursive: false,
+            recursive: true,
             unknown: "warn",
         },
     );
