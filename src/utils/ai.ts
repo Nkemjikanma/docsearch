@@ -22,9 +22,18 @@ const loadDocumentation = async () => {
     const loader = new GithubRepoLoader(
         "https://github.com/nkemjikanma/docsearch",
         {
-            branch: "main",
+            branch: "feat/add-ai-functionality",
             accessToken: process.env.GITHUB_ACCESS_TOKEN, // get github access token
-            ignorePaths: ["data/*", "public/*", "specs/*", "src/*", "*.sh"],
+            ignorePaths: [
+                "data/*",
+                "public/*",
+                "specs/*",
+                "src/*",
+                "*.sh",
+                "*/.json",
+                ".toml",
+                "./README.md",
+            ],
             recursive: false,
             unknown: "warn",
         },
@@ -45,8 +54,6 @@ const loadStore = async (): Promise<MemoryVectorStore> => {
     const docs = await loadDocumentation();
 
     const vectorStore = await createVectoreStore(docs);
-
-    console.log(vectorStore);
 
     return vectorStore;
 };

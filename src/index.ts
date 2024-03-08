@@ -1,7 +1,7 @@
 import type { Handler } from "@netlify/functions";
 import { block, slackApi, validateRequest } from "./utils/slack";
 import { parse } from "querystring";
-import { repoContent } from "./utils/github";
+// import { repoContent } from "./utils/github";
 import { query } from "./utils/ai";
 
 /*
@@ -12,8 +12,10 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
         // get the github repo content
 
         case "/docsearch":
-            const results = await repoContent(payload.text);
+            // const results = await repoContent(payload.text);
             const aiResults = await query(payload.text);
+
+            console.log(aiResults);
 
             const displayResult = JSON.stringify(
                 block(aiResults as any, payload.user_name, payload.text),
