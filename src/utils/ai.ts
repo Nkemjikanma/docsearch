@@ -29,23 +29,22 @@ const loadDocumentation = async () => {
                 "public/*",
                 "specs/*",
                 "src/*",
-                "*.sh",
-                "*.json",
-                "*.toml",
-                "./README.md",
+                "README.md",
                 "node_modules/*",
-                ".netlify",
+                ".netlify/*",
             ],
+            ignoreFiles: ["*.sh", "*.json", "*.toml", "README.md"],
             recursive: true,
             unknown: "warn",
         },
     );
 
     // load and split the documents
+
     return loader.loadAndSplit(
         //TODO: keep testing to find the best separator and chunk size/overlap
         RecursiveCharacterTextSplitter.fromLanguage("markdown", {
-            chunkSize: 2500, // how many tokens per chunk?
+            chunkSize: 5000, // how many tokens per chunk?
             chunkOverlap: 200, // some overlap between chunks
         }),
     );
