@@ -52,7 +52,7 @@ export const block = (
         type: "section",
         text: {
             type: "mrkdwn",
-            text: `*path:* ${searchResults?.path.map((p) => p)} \n *text matches:* \`\`\`${searchResults?.text_matches}\`\`\``,
+            text: `*path:* ${searchResults?.path.map((p) => p)} \n \`\`\`${searchResults?.text_matches}\`\`\``,
         },
     };
 
@@ -73,7 +73,7 @@ export const block = (
             type: "section",
             text: {
                 type: "mrkdwn",
-                text: `Hey @${userId}, your result(s) are ready! Search query \`${searchText}\` - Follow any of the links provided for more details! :party_blob:`,
+                text: `Hey @${userId}, your result(s) are ready! Search query \`${searchText}\``,
             },
         },
         resultSection, // this is the array of search results
