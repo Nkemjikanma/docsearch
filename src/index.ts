@@ -1,20 +1,17 @@
 import type { Handler } from "@netlify/functions";
 import { block, slackApi, validateRequest } from "./utils/slack";
 import { parse } from "querystring";
-import { repoContent } from "./utils/github";
+import { query } from "./utils/ai";
 
-/*
- *
- */
 export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
     switch (payload.command) {
-        // get the github repo content
-
         case "/docsearch":
-            const results = await repoContent(payload.text);
+            const aiResults = await query(payload.text);
+
+            console.log(aiResults);
 
             const displayResult = JSON.stringify(
-                block(results, payload.user_name, payload.text),
+                block(aiResults, payload.user_name, payload.text),
             );
 
             const response = await slackApi("chat.postMessage", {
@@ -36,7 +33,6 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
 
     return {
         statusCode: 200,
-        body: "",
     };
 }
 
@@ -90,6 +86,5 @@ export const handler: Handler = async (event) => {
 
     return {
         statusCode: 200,
-        body: "Hello, World!!!",
     };
 };

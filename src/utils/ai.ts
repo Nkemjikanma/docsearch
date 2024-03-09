@@ -1,7 +1,5 @@
 // https://js.langchain.com/docs/integrations/document_loaders/web_loaders/github
 import OpenAI from "openai";
-import { Document } from "langchain/document";
-import { UnstructuredLoader } from "langchain/document_loaders/fs/unstructured";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings } from "@langchain/openai"; // used to get the embeddings of the text
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
@@ -53,8 +51,6 @@ const loadStore = async (): Promise<MemoryVectorStore> => {
         return docs.filter((doc) => doc.metadata.source.startsWith("docs/"));
     });
 
-    console.log(docs);
-
     const vectorStore = await createVectoreStore([...docs]);
 
     // console.log(vectorStore);
@@ -65,7 +61,7 @@ const loadStore = async (): Promise<MemoryVectorStore> => {
 export const query = async (queryString: string) => {
     const store = await loadStore();
 
-    const results = await store.similaritySearch(queryString, 1);
+    const results = await store.similaritySearch(queryString, 2);
 
     const response: ChatCompletion = await openai.chat.completions.create({
         model: "gpt-4",
@@ -74,11 +70,11 @@ export const query = async (queryString: string) => {
             {
                 role: "system",
                 content:
-                    "You are a helpful Ai assistant that provides accurate information for users who need help understanding documentation. Answer questions to your best ability",
+                    "You are a helpful Ai assistant that provides accurate information for users and developers who need help understanding Navro's documentation. Answer questions to your best ability and awalys site the source of information you provide.",
             },
             {
                 role: "user",
-                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff. Just say you need more context.
+                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Just say you need more context.
             Question: ${queryString}
             Context: ${results.map((r) => r.pageContent)}`,
             },
@@ -86,7 +82,6 @@ export const query = async (queryString: string) => {
     });
 
     return {
-        text: "",
         path: results.map((r) => r.metadata.source),
         text_matches: response?.choices[0]?.message.content,
     };

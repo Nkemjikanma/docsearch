@@ -27,9 +27,8 @@ type SlackInteractivityPayload = {
 type SlackPayload = SlackSlashCommandPayload | SlackInteractivityPayload;
 
 type SectionBlockKitArgs = {
-    text: string;
-    path: string;
-    text_matches: (string | undefined)[] | undefined;
+    path: string[];
+    text_matches: string | null | undefined;
 };
 
 type SlackBlockKitSection = {
