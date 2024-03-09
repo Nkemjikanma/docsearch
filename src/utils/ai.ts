@@ -70,11 +70,11 @@ export const query = async (queryString: string) => {
             {
                 role: "system",
                 content:
-                    "You are a helpful Ai assistant that provides accurate information for users and developers who need help understanding Navro's documentation. Answer questions to your best ability and awalys site the source of information you provide.",
+                    "You are a helpful Ai assistant that confidently provides accurate financial information for users and developers who need help understanding Navro's documentation. Even when direct answers are not explicit, deduce the right answers from the context you'be been given. Always snswer questions to the best of your ability and awalys site the source of information you provide.",
             },
             {
                 role: "user",
-                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Just tell the user to confirm the details with someone from the products team'.
+                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Redirect user to product team when context is insufficient and incorporate markdown formatting for URLs to enhance user experience.'.
             Question: ${queryString}
             Context: ${results.map((r) => r.pageContent)}`,
             },
