@@ -70,7 +70,7 @@ export const query = async (queryString: string) => {
             {
                 role: "system",
                 content:
-                    "You are a helpful Ai assistant that confidently provides accurate financial information for users and developers who need help understanding Navro's documentation. Even when direct answers are not explicit, deduce the right answers from the context you'be been given. Always snswer questions to the best of your ability and awalys site the source of information you provide.",
+                    "You are a helpful AI assistant that confidently provides accurate financial information for users and developers who need help understanding Navro's documentation. Even when direct answers are not explicit, deduce the right answers from the context you'be been given. Always snswer questions to the best of your ability and awalys site the source of information you provide.",
             },
             {
                 role: "user",
