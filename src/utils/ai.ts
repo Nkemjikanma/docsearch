@@ -74,7 +74,7 @@ export const query = async (queryString: string) => {
             },
             {
                 role: "user",
-                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Just say you need more context.
+                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Just tell the user to confirm the details with someone from the products team'.
             Question: ${queryString}
             Context: ${results.map((r) => r.pageContent)}`,
             },
