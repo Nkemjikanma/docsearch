@@ -11,8 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@langchain/openai": "^0.0.18",
     "@netlify/functions": "^2.6.0",
+    "langchain": "^0.1.25",
     "octokit": "^3.1.2",
+    "openai": "^4.28.4",
     "tsx": "^4.7.1",
     "zod": "^3.22.4"
   },
