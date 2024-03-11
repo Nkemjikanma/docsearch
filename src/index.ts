@@ -12,13 +12,6 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
                 block(aiResults, payload.user_name, payload.text),
             );
 
-            if (displayResult === undefined) {
-                return {
-                    statusCode: 200,
-                    body: `loading...`,
-                };
-            }
-
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
                 blocks: displayResult,
