@@ -12,6 +12,11 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
                 block(aiResults, payload.user_name, payload.text),
             );
 
+            await slackApi("chat.postMessage", {
+                replace_original: "true",
+                text: "Response loading...",
+            });
+
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
                 blocks: displayResult,
@@ -43,11 +48,10 @@ export async function handleInteractivity(payload: SlackInteractionPayload) {
             const user = payload?.user?.id;
             const threads = payload?.message?.thread_ts ?? payload?.message?.ts;
 
-            console.log(threads);
-
             await slackApi("chat.postMessage", {
                 channel,
-                threads,
+                threads_ts: threads,
+                response_type: "in_channel",
                 text: `Hey <@${user}>, you forgot to add the right command. Run the \`/docsearch\` slash command to search!`,
             });
     }
@@ -56,17 +60,6 @@ export async function handleInteractivity(payload: SlackInteractionPayload) {
         statusCode: 200,
         body: "",
     };
-}
-
-export async function handleTimeout(payload: SlackSlashCommandPayload) {
-    const response_url = payload.response_url;
-
-    if (response_url) {
-        await slackApi("chat.postMessage", {
-            replace_original: "true",
-            text: "Response loading...",
-        });
-    }
 }
 
 export const handler: Handler = async (event) => {
@@ -91,7 +84,7 @@ export const handler: Handler = async (event) => {
     if (body.payload) {
         const payload = JSON.parse(body.payload);
 
-        return handleTimeout(payload), handleInteractivity(payload);
+        return handleInteractivity(payload);
     }
 
     return {
