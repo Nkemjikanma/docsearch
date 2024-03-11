@@ -70,12 +70,12 @@ export async function handleTimeout(payload: SlackSlashCommandPayload) {
 
     if (response_url) {
         await slackApi("chat.postMessage", {
-            response_url,
             replace_original: "true",
             text: "Response loading...",
         });
     }
 }
+
 export const handler: Handler = async (event) => {
     // validate request
     const isValid = validateRequest(event);
