@@ -52,23 +52,11 @@ export const block = (
         type: "section",
         text: {
             type: "mrkdwn",
-            text: `*path:* ${searchResults?.path.map((p) => p)} \n \`\`\`${searchResults?.text_matches}\`\`\``,
+            text: `${searchResults?.text_matches}`,
         },
     };
 
-    const date = Date.now();
-
     return [
-        {
-            type: "header",
-            text: {
-                type: "plain_text",
-                text: ":mag: New Search Results",
-            },
-        },
-        {
-            type: "divider",
-        },
         {
             type: "section",
             text: {
@@ -82,17 +70,7 @@ export const block = (
         },
         {
             type: "context",
-            elements: [
-                {
-                    type: "plain_text",
-                    text: `${new Date(date).toLocaleTimeString()}`,
-                },
-                {
-                    type: "plain_text",
-                    text: `${new Date(date).toLocaleDateString()}`,
-                },
-                { type: "plain_text", text: ":navro2:" },
-            ],
+            elements: [{ type: "plain_text", text: ":navro2:" }],
         },
     ];
 };

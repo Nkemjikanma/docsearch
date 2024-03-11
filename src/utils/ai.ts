@@ -53,14 +53,13 @@ const loadStore = async (): Promise<MemoryVectorStore> => {
 
     const vectorStore = await createVectoreStore([...docs]);
 
-    // console.log(vectorStore);
-
     return vectorStore;
 };
 
 export const query = async (queryString: string) => {
     const store = await loadStore();
 
+    // compare the query string to the documents
     const results = await store.similaritySearch(queryString, 2);
 
     const response: ChatCompletion = await openai.chat.completions.create({
