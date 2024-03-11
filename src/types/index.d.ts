@@ -51,7 +51,7 @@ type SlackBlockKitSection = {
     ];
 };
 
-type SlackModalPayload = {
+type SlackInteractionPayload = {
     type: string;
     callback_id?: string;
     team: {

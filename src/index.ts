@@ -8,11 +8,16 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
         case "/docsearch":
             const aiResults = await query(payload.text);
 
-            console.log(aiResults);
-
             const displayResult = JSON.stringify(
                 block(aiResults, payload.user_name, payload.text),
             );
+
+            if (displayResult === undefined) {
+                return {
+                    statusCode: 200,
+                    body: `loading...`,
+                };
+            }
 
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
@@ -36,7 +41,7 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
     };
 }
 
-export async function handleInteractivity(payload: SlackModalPayload) {
+export async function handleInteractivity(payload: SlackInteractionPayload) {
     const callback_id = payload?.callback_id ?? payload?.view?.callback_id;
 
     switch (callback_id) {
@@ -60,6 +65,17 @@ export async function handleInteractivity(payload: SlackModalPayload) {
     };
 }
 
+export async function handleTimeout(payload: SlackSlashCommandPayload) {
+    const response_url = payload.response_url;
+
+    if (response_url) {
+        await slackApi("chat.postMessage", {
+            response_url,
+            replace_original: "true",
+            text: "Response loading...",
+        });
+    }
+}
 export const handler: Handler = async (event) => {
     // validate request
     const isValid = validateRequest(event);
@@ -81,7 +97,8 @@ export const handler: Handler = async (event) => {
 
     if (body.payload) {
         const payload = JSON.parse(body.payload);
-        return handleInteractivity(payload);
+
+        return handleTimeout(payload), handleInteractivity(payload);
     }
 
     return {
