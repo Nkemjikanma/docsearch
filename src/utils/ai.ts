@@ -73,7 +73,7 @@ export const query = async (queryString: string) => {
             },
             {
                 role: "user",
-                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Redirect user to product team when context is insufficient and incorporate markdown formatting for URLs to enhance user experience.'.
+                content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't make up stuff and sound confident in your replies. Redirect user to product team when context is insufficient, refer to Navro as we, and incorporate markdown formatting for URLs to enhance user experience.'.
             Question: ${queryString}
             Context: ${results.map((r) => r.pageContent)}`,
             },
