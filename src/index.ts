@@ -4,6 +4,8 @@ import { parse } from "querystring";
 import { query } from "./utils/ai";
 
 export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
+    const { response_url, token } = payload;
+
     switch (payload.command) {
         case "/docsearch":
             const aiResults = await query(payload.text);
@@ -12,7 +14,7 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
                 block(aiResults, payload.user_name, payload.text),
             );
 
-            await slackApi("chat.postMessage", {
+            await slackApi(response_url, {
                 replace_original: "true",
                 text: "Response loading...",
             });
