@@ -97,8 +97,8 @@ export const handler: Handler = async (event) => {
 
     if (body.payload) {
         const payload = JSON.parse(body.payload);
-        handleTimeout(payload);
-        return handleInteractivity(payload);
+
+        return handleTimeout(payload), handleInteractivity(payload);
     }
 
     return {
