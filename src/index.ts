@@ -4,20 +4,15 @@ import { parse } from "querystring";
 import { query } from "./utils/ai";
 
 export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
-    const { response_url, token } = payload;
-
+    const response_url = payload.response_url;
     switch (payload.command) {
         case "/docsearch":
+            handleTimeout(response_url);
             const aiResults = await query(payload.text);
 
             const displayResult = JSON.stringify(
                 block(aiResults, payload.user_name, payload.text),
             );
-
-            await slackApi(response_url, {
-                replace_original: "true",
-                text: "Response loading...",
-            });
 
             const response = await slackApi("chat.postMessage", {
                 channel: payload.channel_id,
@@ -25,10 +20,10 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
             });
 
             if (!response.ok) {
-                console.log(response);
+                console.log("hey", response);
             }
-
             break;
+
         default:
             return {
                 statusCode: 400,
@@ -53,7 +48,6 @@ export async function handleInteractivity(payload: SlackInteractionPayload) {
             await slackApi("chat.postMessage", {
                 channel,
                 threads_ts: threads,
-                response_type: "in_channel",
                 text: `Hey <@${user}>, you forgot to add the right command. Run the \`/docsearch\` slash command to search!`,
             });
     }
@@ -62,6 +56,19 @@ export async function handleInteractivity(payload: SlackInteractionPayload) {
         statusCode: 200,
         body: "",
     };
+}
+
+export async function handleTimeout(response_url: string) {
+    await fetch(response_url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            replace_original: "true",
+            text: "Response loading...",
+        }),
+    });
 }
 
 export const handler: Handler = async (event) => {
@@ -85,7 +92,6 @@ export const handler: Handler = async (event) => {
 
     if (body.payload) {
         const payload = JSON.parse(body.payload);
-
         return handleInteractivity(payload);
     }
 

@@ -65,12 +65,5 @@ export const block = (
             },
         },
         resultSection, // this is the array of search results
-        {
-            type: "divider",
-        },
-        {
-            type: "context",
-            elements: [{ type: "plain_text", text: ":navro2:" }],
-        },
     ];
 };
