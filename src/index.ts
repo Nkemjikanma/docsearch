@@ -7,7 +7,10 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
     const response_url = payload.response_url;
     switch (payload.command) {
         case "/docsearch":
+            // handle timeout
             handleTimeout(response_url);
+            setInterval(() => handleTimeout(response_url), 2800);
+
             const aiResults = await query(payload.text);
 
             const displayResult = JSON.stringify(
@@ -39,17 +42,23 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
 export async function handleInteractivity(payload: SlackInteractionPayload) {
     const callback_id = payload?.callback_id ?? payload?.view?.callback_id;
 
-    switch (callback_id) {
-        case "docsearch":
-            const channel = "C06KU6MF92A";
-            const user = payload?.user?.id;
-            const threads = payload?.message?.thread_ts ?? payload?.message?.ts;
+    console.log("callback_id", payload);
 
-            await slackApi("chat.postMessage", {
-                channel,
-                threads_ts: threads,
-                text: `Hey <@${user}>, you forgot to add the right command. Run the \`/docsearch\` slash command to search!`,
-            });
+    if (callback_id === "docsearch") {
+        const channel = "C06KU6MF92A";
+        const thread_ts = payload?.message?.thread_ts ?? payload?.message?.ts;
+
+        await slackApi("chat.postMessage", {
+            channel,
+            thread_ts,
+            text: `You forgot to add the right command. Run the \`/docsearch\` slash command to search!`,
+        });
+    } else {
+        console.log(`No handler defined for ${payload.view.callback_id}`);
+        return {
+            statusCode: 400,
+            body: `No handler defined for ${payload.view.callback_id}`,
+        };
     }
 
     return {
@@ -59,14 +68,15 @@ export async function handleInteractivity(payload: SlackInteractionPayload) {
 }
 
 export async function handleTimeout(response_url: string) {
-    await fetch(response_url, {
+    return await fetch(response_url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            response_type: "ephemeral",
             replace_original: "true",
-            text: "Response loading...",
+            text: "",
         }),
     });
 }
