@@ -9,7 +9,6 @@ export async function handleSlashCommand(payload: SlackSlashCommandPayload) {
         case "/docsearch":
             // handle timeout
             handleTimeout(response_url);
-            setInterval(() => handleTimeout(response_url), 2800);
 
             const aiResults = await query(payload.text);
 
